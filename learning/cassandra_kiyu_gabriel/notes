@@ -1,0 +1,15 @@
+- Cassandra is meant to be used in Big Data applications. RDBMSs are too slow for such kind of applications. All performance hits from ACID transactions is not always required.
+
+- It's in the subclass of Column Family NoSQL databases.
+
+- It's an AP database in the CAP theorem.
+
+- Has it's own query language, the Cassandra Query Language (CQL), similar to SQL (to reduce the overhead in the learning process).
+
+- There's a resemblance to the Bitcoin blockchain. Like blockchain, Cassandra is a distributed database with no 100% consistency. With time, a transaction becomes consistent in all nodes (but the newer ones are still AP).
+
+- Cassandra's architecture is based on a cluster of nodes, distributed geographically (or not). The database is schemaless (in theory. In practice, there's always a schema and the best place to storage it is in the database) and if a node is lost, the base is still useful. There's no "single point of failure" in Cassandra. Inside the cluster there's two levels of logical grouping: Data Centers (Cassandra DC) and Racks. Data Centers are (usually) physical groups (such as East or West DCs). Racks are "availability zones" (or, without fancy words, "failure zones"), or a unit of the architecture that could fail (share power supply of siwtches).
+
+- There's ONE token range for the entire cluster.
+
+- Data modeling in Cassandra requests for a DevOps approach. It's a "purpose driven database" (less bureaucracy).
