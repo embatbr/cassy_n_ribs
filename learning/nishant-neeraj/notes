@@ -1,0 +1,73 @@
+- Cassandra's nature makes the data to be distributed across multiple machines (nodes), each holding just a chunck of it. This way, the database is not limited by the storage and processing capabilities of a single machine. Cassandra scales almost linearly, with regards to performance, when new nodes are added.
+
+- Availability == probability that a query works. A high-available system is ready to serve any request any time. This is usually achieved by adding redundancies.
+
+- Cassandra has a powerful replication mechanism. All nodes are equal (no master-slave pattern) and when data is written in the first node, the replication is made asynchronously, it is already available for a client. This provides very low latency for the system.
+
+- The expansion from a single node to a single datacenter cluster or multiple datacenters is much easier than in traditional RDBMSs, due to nature of the platform (doesn't need to apply several re-configurations).
+
+- Summarizing, Cassandra behaves similarly to Bitcoin's blockchain (with the concept of sidechains - not all nodes having exactly the same data - implemented).
+
+- Cassandra has 3 containers, nested.
+    - The first is KEYSPACE (a namespace), which can be thought as a relational database. This way, having multiple keyspaces, Cassandra "has" multiple RDBMSs.
+
+    - The second is the TABLE (column families for older versions), residing under a keyspace. It is similar to a relational table, but more flexible. It is basically a sorted map of sorted maps (analogous to a pointer of pointers in C). Each table must have a primary key.
+
+    - The third container is the ROW KEY or PARTITION KEY. Each partition is associated with a set of cells (like columns in RDBMSs). Each cell has a name and a value. Partitions are distributed across the cluster, creating effective auto-sharding.
+
+- Cassandra doesn't have relations, so relational logic must be handled in application level. This makes the database denormalized (more redundant, achieving higher read performance).
+
+- Types of keys:
+    - PRIMARY KEY, a column or group of columns that uniquely defines a row in a CQL table.
+
+    - COMPOSITE/COMPOUND KEY, a type of PK made of more than one column.
+
+    - PARTITION/ROW KEY, is the PK, if the PK is simple, or the first term of the PK, if the PK is a compound key. All CQL rows with the SAME partition key lives in the same node.
+
+    - CLUSTERING KEY, a column that tells Cassandra how data within a partition is ordered (or clustered).
+
+    - COMPOSITE PARTITION KET (optional), when the first key of a compound key is also a compound key.
+
+    Ex. 1:
+        CREATE TABLE customers (
+            id uuid,
+            email text,
+            PRIMARY KEY (id)
+        )
+
+        The column "id" is the primary key and the partition key. There is NO clustering
+
+    Ex. 2:
+        CREATE TABLE country_states (
+            country text,
+            state text,
+            population int,
+            PRIMARY KEY (country, state)
+        )
+
+        The primary key, which is a compound key, is formed by "country" and "state". The partition key is the column "country". All rows with the same value in "country" belongs to the same node/machine.
+
+    Ex. 3:
+        CREATE TABLE country_chiefs (
+            country text,
+            prez_name text,
+            num_states int,
+            capital text,
+            ruling_year int,
+            PRIMARY KEY ((country, prez_name), num_states, capital)
+        )
+
+        Similar to Ex. 2, but now the partition key is composed (composite partition key) of "country" and "prez_name". Each node may have more than one line (for each "ruling_year" of each president in each country). For the same country and the same president, there may be different number of states in each year (added, lost or divided territories).
+
+        Another version of Ex. 3 is:
+
+        CREATE TABLE country_chiefs (
+            country text,
+            prez_name text,
+            state text,
+            population int,
+            wealth int,
+            PRIMARY KEY ((country, prez_name), state)
+        )
+
+        Each tuple "country" and "prez_name" has its own node, containing the rows ordered by state (also part of the PK). So, a node ("USA", "Washington") have the states "Virginia" and "Delaware", but not "California" (added in 1850). A node ("USA", "Lincoln") have the 3 states, but with different values for "population" and "wealth".
