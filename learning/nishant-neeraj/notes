@@ -1,8 +1,8 @@
-- Cassandra's nature makes the data to be distributed across multiple machines (nodes), each holding just a chunck of it. This way, the database is not limited by the storage and processing capabilities of a single machine. Cassandra scales almost linearly, with regards to performance, when new nodes are added.
+- Cassandra's nature makes the data be distributed across multiple machines (nodes), each one holding just a chunck of it. This way, the database is not limited by the storage and processing capabilities of a single machine. Cassandra scales almost linearly, with regards to performance, when new nodes are added.
 
-- Availability == probability that a query works. A high-available system is ready to serve any request any time. This is usually achieved by adding redundancies.
+- Availability == probability that a query works. A high-available system is ready to serve any request any time. This is usually achieved by adding redundancies (replicate a node).
 
-- Cassandra has a powerful replication mechanism. All nodes are equal (no master-slave pattern) and when data is written in the first node, the replication is made asynchronously, it is already available for a client. This provides very low latency for the system.
+- Cassandra has a powerful replication mechanism. All nodes are equal (no master-slave pattern) and when data is written in the first node, the replication is made asynchronously and it is already available for a client. This provides very low latency for the system.
 
 - The expansion from a single node to a single datacenter cluster or multiple datacenters is much easier than in traditional RDBMSs, due to nature of the platform (doesn't need to apply several re-configurations).
 
