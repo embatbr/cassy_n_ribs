@@ -1,6 +1,6 @@
 # Report
 
-In this markdown file I report how the test screen was answered. Since the file format is intended to be rendered, it is advised to read it in a platform with support (e.g., Github). This report and the codes written can be found in the Github repository [cassy_n_ribs](https://github.com/embatbr/cassy_n_ribs).
+In this markdown file I report how the test was answered. This format was chosen for being human readable. This report and the codes written can be found in the Github repository [cassy_n_ribs](https://github.com/embatbr/cassy_n_ribs) (the name is to keep a low profile).
 
 
 ## Learning
@@ -10,9 +10,10 @@ I used many sources (documentation, books and tutorials - Kiyu Gabriel's was spe
 
 ## Tools Used
 
-- Apache Cassandra 2.1.8 (released after September 2014), saved in the same directory of this file.
-- A driver for Cassandra written in Python (for version 3.4).
-- Jmxterm, a command line interface for querying jmx metrics.
+- Java 7.
+- Apache Cassandra 2.1.9, saved in the directory *project* (and gitignored).
+- [Jmxterm](http://wiki.cyclopsgroup.org/jmxterm/download.html), a command line interface for querying jmx metrics. Saved in the directory *project/lib*.
+- A driver for Cassandra written in Python (for version 3.4), provided by DataStax.
 
 
 ## Understanding of the Architecture
@@ -30,19 +31,29 @@ Cassandra = Google BigTable + Amazon Dynamo, roughly speaking.
 Cassandra architecture has many similarities with Bitcoin's blockchain.
 
 
-## Tests
+## Implementation and Tests
 
-Three types of tests are described step by step. The first (and simpler) is performed on a single node cluster (no partitioning). Later, a single data center with multiple clusters is tested. The last test is with multiples data centers.
+In my machine I created a Python virtual environment using `virtualenv` and `virtualenvwrapper` (the environment folder is created in the `HOME` directory). Its name is `ds_hire` and is activated typing
 
-In my machine I created a Python virtual environment using `virtualenv` and `virtualenvwrapper` (the `venv`'s folder is created in the `HOME` directory).
+```
+$ workon ds_hire
+```
 
-The directories *data* and *logs* are created in Cassandra's directory (*apache-cassandra-2.1.8*). There is a recommendation of create them in */var/lib*, but this would require sudo privilegies and is an unnecessary overhead to add here.
+on the terminal.
 
-
-### Test 1: Single Node Cluster
-
-
-### Test 2: Multiple Node Cluster - Single Data Center
+The directories *data* and *logs* are created in Cassandra's own directory. There is a recommendation to create them in */var/lib/cassandra*, but this would require sudo privilegies and is an unnecessary overhead to add here (also the current mode is easier to check in the Sublime Text).
 
 
-### Test 3: Multiple Node Cluster - Multiples Data Centers
+### Test: Single Node Cluster
+
+
+#### Tasks
+
+The list of tasks defined in the document *JMXTextScreen.pdf*.
+
+1. OK
+2.
+3.
+4.
+5.
+6.

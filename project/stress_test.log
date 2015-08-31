@@ -1,0 +1,8 @@
+2015-08-31 00:41:34 root INFO Checking JMX connection to 127.0.0.1:7199
+2015-08-31 00:41:34 root INFO cassandra/bin/nodetool status -h 127.0.0.1 -p 7199
+2015-08-31 00:41:36 root INFO b'Datacenter: datacenter1\n=======================\nStatus=Up/Down\n|/ State=Normal/Leaving/Joining/Moving\n--  Address    Load       Tokens  Owns (effective)  Host ID                               Rack\nUN  127.0.0.1  145.37 KB  256     100.0%            5e431661-8361-48c7-91f0-30416ee0cf25  rack1\n\n'
+
+2015-08-31 00:41:36 root INFO Cassandra is RUNNING with PID 15140
+
+2015-08-31 00:41:36 root INFO Stress test STARTED
+2015-08-31 00:41:36 root INFO Stress test STOPPED
