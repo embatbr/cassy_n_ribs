@@ -42,7 +42,7 @@ CLIENT_THRIFT_PORT = 9160
 LOG_FILENAME = 'jmx_test.log'
 JMX_LOGFILENAME = 'jmx_metrics.csv'
 JMX_TIME_INTERVAL = 2 # in seconds
-STRESS_SLEEP_INTERVAL = 3 # in seconds
+STRESS_SLEEP_INTERVAL = 5 # in seconds
 METRICS = ('LiveSSTableCount', 'AllMemTablesDataSize', '95thPercentile')
 
 
@@ -82,8 +82,8 @@ class JMX_Logger(object):
 
         self.jmxterm_proc = None
         self.jmx_time_interval = JMX_TIME_INTERVAL
-        self.temp_writefile = open('temp', 'wb')
-        self.temp_readfile = open('temp', 'r')
+        self.metrics_writefile = open('metrics', 'ab')
+        self.metrics_readfile = open('metrics', 'r')
         self.jmx_log_filename = JMX_LOGFILENAME
         self.jmx_log_file = None
 
@@ -108,7 +108,7 @@ class JMX_Logger(object):
             stress_thread = threading.Thread(target=self.cassandra_stress)
             stress_thread.start()
 
-            # TODO keep recording while stress_thread is running
+            # keep recording while stress_thread is running
             while stress_thread.isAlive():
                 time.sleep(self.jmx_time_interval)
                 self.log_JMX()
@@ -127,8 +127,8 @@ class JMX_Logger(object):
     def is_cassandra_running(self):
         """Checks (through JMX port) if there's a Cassandra instance running.
         """
-        cmd_status = [self.nodetool_path, 'status', '-h %s' % self.host, '-p %d' % self.jmx_port]
         logging.info('Checking JMX connection to %s:%d' % (self.host, self.jmx_port))
+        cmd_status = [self.nodetool_path, 'status', '-h %s' % self.host, '-p %d' % self.jmx_port]
         logging.info(' '.join(cmd_status))
 
         try:
@@ -172,18 +172,25 @@ class JMX_Logger(object):
             sys.exit(1)
 
 
-    def start_jmx_logging(self):
-        logging.info('Stress test STARTED')
+    def start_jmx_logging(self, sleeping_time=1):
+        logging.info('JMX Recording STARTED')
         # run java for self.host:self.jmx_port, in silent and non-interactive mode
-        cmd_jmxterm = ['java', '-jar', self.jmxterm_path, '-l %s:%s' % (self.host,
-        self.jmx_port), '-v', 'silent', '-n']
+        cmd_jmxterm = ['java', '-jar', self.jmxterm_path, '-n']
+        #, '-l %s:%s' % (self.host,
+        #self.jmx_port), '-v', 'silent', '-n']
         logging.info(' '.join(cmd_jmxterm))
 
         try:
             self.jmxterm_proc = subprocess.Popen(cmd_jmxterm,
                                                  stdin=subprocess.PIPE,
-                                                 stdout=self.temp_writefile,
-                                                 stderr=self.temp_writefile)
+                                                 stdout=self.metrics_writefile,
+                                                 stderr=self.metrics_writefile)
+            # self.jmxterm_proc.wait()
+            welcome_msg = ''
+            while welcome_msg == '':
+                time.sleep(sleeping_time)
+                welcome_msg = self.metrics_readfile.readline().strip()
+            self.jmxterm_proc.stdin.write(('open %s:%d\n' % (self.host, self.jmx_port)).encode())
 
             self.jmx_log_file = open(self.jmx_log_filename, 'w')
             self.jmx_log_file.write('%s,%s,%s\n' % (METRICS[0], METRICS[1], METRICS[2]))
@@ -198,6 +205,7 @@ class JMX_Logger(object):
         """The sleeping time is in seconds.
         """
         time.sleep(sleeping_time)
+        logging.info('Stress test STARTED')
         cmd_stress = [self.stress_path, 'write', 'n=%d' % num_iter, '-rate threads=%d' %
                       numthreads]
         logging.info(' '.join(cmd_stress))
@@ -213,18 +221,38 @@ class JMX_Logger(object):
             output = str(e.output)[2 : -2]
             logging.error(output)
 
+        logging.info('Stress test STOPPED')
         time.sleep(sleeping_time)
 
 
-    def log_JMX(self):
-        print('logging') # criar código de logging aqui
+    def log_JMX(self, sleeping_time=0.2):
+        get_cf = r'get -s -b org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=standard1,name=%s Value'
+        getLiveSSTableCount = get_cf % 'LiveSSTableCount'
+        getAllMemTablesDataSize = get_cf % 'AllMemTablesDataSize'
+        get95thPercentile = r'get -s -b org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency 95thPercentile'
+
+        gets = [getLiveSSTableCount, getAllMemTablesDataSize, get95thPercentile]
+        outputs = list()
+
+        for get in gets:
+            logging.info(get)
+            self.jmxterm_proc.stdin.write(('%s\n' % get).encode())
+            time.sleep(sleeping_time)
+            output = self.metrics_readfile.readline().strip()
+            output = 0 if output == '' else output
+            outputs.append(output)
+
+        print(outputs)
+
+        self.jmx_log_file.write('%s,%s,%s\n' % (outputs[0], outputs[1], outputs[2]))
+        logging.info('JMX metrics logged')
 
 
     def stop_jmx_logging(self):
-        logging.info('Stress test STOPPED')
-        self.jmxterm_proc.stdin.write(b'exit\n')
-        self.temp_writefile.close()
-        self.temp_readfile.close()
+        logging.info('JMX recording STOPPED')
+        self.jmxterm_proc.stdin.write(('exit\n').encode())
+        self.metrics_writefile.close()
+        self.metrics_readfile.close()
         pass
 
 
