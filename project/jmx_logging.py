@@ -41,6 +41,8 @@ CLIENT_THRIFT_PORT = 9160
 
 LOG_FILENAME = 'jmx_test.log'
 JMX_LOGFILENAME = 'jmx_metrics.csv'
+JMX_TIME_INTERVAL = 2 # in seconds
+STRESS_SLEEP_INTERVAL = 3 # in seconds
 METRICS = ('LiveSSTableCount', 'AllMemTablesDataSize', '95thPercentile')
 
 
@@ -79,6 +81,7 @@ class JMX_Logger(object):
         self.version = None
 
         self.jmxterm_proc = None
+        self.jmx_time_interval = JMX_TIME_INTERVAL
         self.temp_writefile = open('temp', 'wb')
         self.temp_readfile = open('temp', 'r')
         self.jmx_log_filename = JMX_LOGFILENAME
@@ -107,7 +110,8 @@ class JMX_Logger(object):
 
             # TODO keep recording while stress_thread is running
             while stress_thread.isAlive():
-                pass
+                time.sleep(self.jmx_time_interval)
+                self.log_JMX()
 
             self.stop_jmx_logging()
 
@@ -190,11 +194,11 @@ class JMX_Logger(object):
             sys.exit(1)
 
 
-    def cassandra_stress(self, n=50000, numthreads=4, sleeping_time=5):
+    def cassandra_stress(self, num_iter=50000, numthreads=4, sleeping_time=STRESS_SLEEP_INTERVAL):
         """The sleeping time is in seconds.
         """
         time.sleep(sleeping_time)
-        cmd_stress = [self.stress_path, 'write', 'n=%d' % n, '-rate threads=%d' %
+        cmd_stress = [self.stress_path, 'write', 'n=%d' % num_iter, '-rate threads=%d' %
                       numthreads]
         logging.info(' '.join(cmd_stress))
 
@@ -205,16 +209,20 @@ class JMX_Logger(object):
             logging.info("%s" % output)
 
         except subprocess.CalledProcessError as e:
-            logging.error('code: %d' % e.returncode)
+            logging.error('err_code: %d' % e.returncode)
             output = str(e.output)[2 : -2]
             logging.error(output)
 
         time.sleep(sleeping_time)
 
 
+    def log_JMX(self):
+        print('logging') # criar código de logging aqui
+
+
     def stop_jmx_logging(self):
         logging.info('Stress test STOPPED')
-        # self.jmxterm_proc.stdin.write('exit\n')
+        self.jmxterm_proc.stdin.write(b'exit\n')
         self.temp_writefile.close()
         self.temp_readfile.close()
         pass

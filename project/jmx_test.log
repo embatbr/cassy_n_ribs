@@ -1,59 +1,59 @@
-2015-09-01 00:03:57 root INFO Cassandra directory: /home/embat/dados/workspace/datastax-hiring/project/cassandra
-2015-09-01 00:03:57 root INFO JMXTerm directory: /home/embat/dados/workspace/datastax-hiring/project/lib/jmxterm.jar
-2015-09-01 00:03:57 root INFO Host: 127.0.0.1
+2015-09-01 00:53:22 root INFO Cassandra directory: /home/embat/dados/workspace/datastax-hiring/project/cassandra
+2015-09-01 00:53:22 root INFO JMXTerm directory: /home/embat/dados/workspace/datastax-hiring/project/lib/jmxterm.jar
+2015-09-01 00:53:22 root INFO Host: 127.0.0.1
 
-2015-09-01 00:03:57 root INFO Checking JMX connection to 127.0.0.1:7199
-2015-09-01 00:03:57 root INFO /home/embat/dados/workspace/datastax-hiring/project/cassandra/bin/nodetool status -h 127.0.0.1 -p 7199
-2015-09-01 00:03:58 root INFO Datacenter: datacenter1
+2015-09-01 00:53:22 root INFO Checking JMX connection to 127.0.0.1:7199
+2015-09-01 00:53:22 root INFO /home/embat/dados/workspace/datastax-hiring/project/cassandra/bin/nodetool status -h 127.0.0.1 -p 7199
+2015-09-01 00:53:24 root INFO Datacenter: datacenter1
 =======================
 Status=Up/Down
 |/ State=Normal/Leaving/Joining/Moving
---  Address    Load       Tokens  Owns    Host ID                               Rack
-UN  127.0.0.1  194.79 MB  256     ?       7e9ac5c9-06fe-4ea1-9129-84f81718d289  rack1
+--  Address    Load       Tokens  Owns (effective)  Host ID                               Rack
+UN  127.0.0.1  51.61 KB   256     100.0%            86f7c2f6-deaf-4225-9bd4-61490d9ce9ca  rack1
 
-Note: Non-system keyspaces don't have the same replication settings, effective ownership information is meaningless
 
-2015-09-01 00:03:58 root INFO ps aux | grep cassandra | grep -v grep | awk '{print $2}'
-2015-09-01 00:03:58 root INFO /home/embat/dados/workspace/datastax-hiring/project/cassandra/bin/nodetool version -h 127.0.0.1 -p 7199
-2015-09-01 00:04:00 root INFO Cassandra is RUNNING version 2.1.9 with PID 5448
+2015-09-01 00:53:24 root INFO ps aux | grep cassandra | grep -v grep | awk '{print $2}'
+2015-09-01 00:53:24 root INFO /home/embat/dados/workspace/datastax-hiring/project/cassandra/bin/nodetool version -h 127.0.0.1 -p 7199
+2015-09-01 00:53:25 root INFO Cassandra is RUNNING version 2.1.9 with PID 19337
 
-2015-09-01 00:04:00 root INFO Stress test STARTED
-2015-09-01 00:04:00 root INFO java -jar /home/embat/dados/workspace/datastax-hiring/project/lib/jmxterm.jar -l 127.0.0.1:7199 -v silent -n
-2015-09-01 00:04:05 root INFO /home/embat/dados/workspace/datastax-hiring/project/cassandra/tools/bin/cassandra-stress write n=50000 -rate threads=4
-2015-09-01 00:04:26 root INFO Unable to create stress keyspace: Keyspace names must be case-insensitively unique ("keyspace1" conflicts with "keyspace1")
+2015-09-01 00:53:25 root INFO Stress test STARTED
+2015-09-01 00:53:25 root INFO java -jar /home/embat/dados/workspace/datastax-hiring/project/lib/jmxterm.jar -l 127.0.0.1:7199 -v silent -n
+2015-09-01 00:53:28 root INFO /home/embat/dados/workspace/datastax-hiring/project/cassandra/tools/bin/cassandra-stress write n=50000 -rate threads=4
+2015-09-01 00:54:05 root INFO Created keyspaces. Sleeping 1s for propagation.
 Sleeping 2s...
 Warming up WRITE with 50000 iterations...
-INFO  03:04:09 Using data-center name 'datacenter1' for DCAwareRoundRobinPolicy (if this is incorrect, please provide the correct datacenter name with DCAwareRoundRobinPolicy constructor)
-INFO  03:04:09 New Cassandra host localhost/127.0.0.1:9042 added
+INFO  03:53:35 Using data-center name 'datacenter1' for DCAwareRoundRobinPolicy (if this is incorrect, please provide the correct datacenter name with DCAwareRoundRobinPolicy constructor)
+INFO  03:53:35 New Cassandra host localhost/127.0.0.1:9042 added
 Connected to cluster: EduardoTestCluster
 Datatacenter: datacenter1; Host: localhost/127.0.0.1; Rack: rack1
 Running WRITE with 4 threads for 50000 iteration
 type,      total ops,    op/s,    pk/s,   row/s,    mean,     med,     .95,     .99,    .999,     max,   time,   stderr, errors,  gc: #,  max ms,  sum ms,  sdv ms,      mb
-total,          6946,    6946,    6946,    6946,     0.5,     0.4,     1.0,     2.0,    11.4,    26.9,    1.0,  0.00000,      0,      0,       0,       0,       0,       0
-total,         16308,    9327,    9327,    9327,     0.4,     0.4,     0.7,     1.2,     7.1,    10.7,    2.0,  0.09779,      0,      0,       0,       0,       0,       0
-total,         25893,    9540,    9540,    9540,     0.4,     0.4,     0.7,     1.2,     5.2,     8.1,    3.0,  0.07352,      0,      0,       0,       0,       0,       0
-total,         31719,    5793,    5793,    5793,     0.7,     0.3,     0.7,     1.4,   115.3,   288.1,    4.0,  0.05929,      0,      1,     112,     112,       0,     191
-total,         41729,    9962,    9962,    9962,     0.4,     0.3,     0.6,     1.1,     5.7,     8.6,    5.0,  0.05446,      0,      0,       0,       0,       0,       0
-total,         50000,   10106,   10106,   10106,     0.4,     0.3,     0.6,     1.0,     4.6,    10.0,    5.8,  0.04942,      0,      0,       0,       0,       0,       0
+total,          3907,    3905,    3905,    3905,     1.0,     0.7,     2.3,     5.5,    17.3,    29.7,    1.0,  0.00000,      0,      0,       0,       0,       0,       0
+total,          8563,    4592,    4592,    4592,     0.8,     0.6,     2.0,     4.7,    12.4,    17.8,    2.0,  0.05725,      0,      0,       0,       0,       0,       0
+total,         14226,    5565,    5565,    5565,     0.7,     0.5,     1.6,     4.4,     9.6,    33.6,    3.0,  0.08392,      0,      0,       0,       0,       0,       0
+total,         22014,    7666,    7666,    7666,     0.5,     0.4,     1.0,     3.2,     5.1,     7.5,    4.0,  0.13054,      0,      0,       0,       0,       0,       0
+total,         31065,    8907,    8907,    8907,     0.4,     0.3,     0.7,     2.4,     4.4,    93.1,    5.1,  0.15313,      0,      1,      91,      91,       0,     186
+total,         41297,   10155,   10155,   10155,     0.4,     0.3,     0.6,     2.9,     3.7,     7.0,    6.1,  0.14325,      0,      0,       0,       0,       0,       0
+total,         50000,    9230,    9230,    9230,     0.4,     0.3,     0.7,     2.6,     6.1,     9.3,    7.0,  0.12441,      0,      0,       0,       0,       0,       0
 
 
 Results:
-op rate                   : 8566 [WRITE:8566]
-partition rate            : 8566 [WRITE:8566]
-row rate                  : 8566 [WRITE:8566]
-latency mean              : 0.4 [WRITE:0.4]
+op rate                   : 7128 [WRITE:7128]
+partition rate            : 7128 [WRITE:7128]
+row rate                  : 7128 [WRITE:7128]
+latency mean              : 0.5 [WRITE:0.5]
 latency median            : 0.4 [WRITE:0.4]
-latency 95th percentile   : 0.7 [WRITE:0.7]
-latency 99th percentile   : 1.3 [WRITE:1.3]
-latency 99.9th percentile : 7.0 [WRITE:7.0]
-latency max               : 288.1 [WRITE:288.1]
+latency 95th percentile   : 1.2 [WRITE:1.2]
+latency 99th percentile   : 3.5 [WRITE:3.5]
+latency 99.9th percentile : 7.9 [WRITE:7.9]
+latency max               : 93.1 [WRITE:93.1]
 Total partitions          : 50000 [WRITE:50000]
 Total errors              : 0 [WRITE:0]
 total gc count            : 1
-total gc mb               : 191
+total gc mb               : 186
 total gc time (s)         : 0
-avg gc time(ms)           : 112
+avg gc time(ms)           : 91
 stdev gc time(ms)         : 0
-Total operation time      : 00:00:05
+Total operation time      : 00:00:07
 END
-2015-09-01 00:04:31 root INFO Stress test STOPPED
+2015-09-01 00:54:09 root INFO Stress test STOPPED
