@@ -1,23 +1,27 @@
 #!/usr/bin/env python
 
-"""
+"""Code to solve the exercise.
+Do NOT forget to activate the virtual environment (or have the module 'cassandra'
+installed in the root Python).
+
+TODO study the package 'multiprocessing' and check if it's a good replacement to
+'subprocess'.
 """
 
 
+from cassandra.cluster import Cluster, NoHostAvailable
 import logging
 import os
 import re
 import subprocess
 import sys
+import threading
+import time
 
-from cassandra.cluster import Cluster, NoHostAvailable
 
-
-# default paths
-
-# change to the path of your installation
-CASSANDRA_DIR = 'cassandra'
-JMX_TERM_PATH = 'lib/jmxterm.jar'
+# default paths (change to the path of your installation)
+CASSANDRA_DIR_PATH = './cassandra'
+JMXTERM_PATH = './lib/jmxterm.jar'
 
 
 # hosts and ports
@@ -35,14 +39,16 @@ CLIENT_PORT = 9042
 CLIENT_THRIFT_PORT = 9160
 
 
-LOG_FILENAME = 'stress_test.log'
+LOG_FILENAME = 'jmx_test.log'
+JMX_LOGFILENAME = 'jmx_metrics.csv'
+METRICS = ('LiveSSTableCount', 'AllMemTablesDataSize', '95thPercentile')
 
 
-def config_log():
+def config_log(filename=LOG_FILENAME):
     """Configures the log.
     """
     logging.basicConfig(
-        filename=LOG_FILENAME,
+        filename=filename,
         filemode='w',
         format='%(asctime)s %(name)s %(levelname)s %(message)s',
         datefmt='%Y-%m-%d %H:%M:%S',
@@ -51,96 +57,171 @@ def config_log():
 
     handler = logging.StreamHandler()
     handler.setLevel(logging.INFO)
-    formatter = logging.Formatter('%(asctime)s %(name)s %(levelname)s %(message)s')
+    formatter = logging.Formatter('%(asctime)s %(name)s %(levelname)s %(message)s',
+                                  datefmt='%Y-%m-%d %H:%M:%S')
     handler.setFormatter(formatter)
     logging.getLogger('').addHandler(handler)
 
 
-class JMXLogger(object):
-    def __init__(self, cassandra_dir=CASSANDRA_DIR, jmx_term_path=JMX_TERM_PATH,
+class JMX_Logger(object):
+    def __init__(self, cassandra_dir_path=CASSANDRA_DIR_PATH, jmxterm_path=JMXTERM_PATH,
                  host=LOCALHOST, jmx_port=JMX_PORT, client_port=CLIENT_PORT):
-        self.cassandra_dir = cassandra_dir
-        self.jmx_term_path = jmx_term_path
+        self.cassandra_dir_path = os.path.abspath(cassandra_dir_path)
+        self.jmxterm_path = os.path.abspath(jmxterm_path)
         self.host = host
         self.jmx_port = jmx_port
         self.client_port = client_port
 
-        self.nodetool = '%s/bin/nodetool' % cassandra_dir
-        self.stress = '%s/tools/bin/cassandra-stress' % cassandra_dir
+        self.nodetool_path = '%s/bin/nodetool' % self.cassandra_dir_path
+        self.stress_path = '%s/tools/bin/cassandra-stress' % self.cassandra_dir_path
 
         self.pid = None
-        self.cluster = None
-        self.session = None
+        self.version = None
+
+        self.jmxterm_proc = None
+        self.temp_writefile = open('temp', 'wb')
+        self.temp_readfile = open('temp', 'r')
+        self.jmx_log_filename = JMX_LOGFILENAME
+        self.jmx_log_file = None
 
 
     def run(self):
-        """Executes the monitoring of the Cassandra instance using JMX.
+        """Executes the monitoring of the Cassandra instance running in a node,
+        using JMX.
         """
-        if self.is_cassandra_running():
-            logging.info('Cassandra is RUNNING with PID %d\n' % self.pid)
+        logging.info('Cassandra directory: %s' % self.cassandra_dir_path)
+        logging.info('JMXTerm directory: %s' % self.jmxterm_path)
+        logging.info('Host: %s\n' % self.host)
 
-            logging.info('Stress test STARTED')
+        if self.is_cassandra_running():
+            self.get_pid()
+            self.get_version()
+            logging.info('Cassandra is RUNNING version %s with PID %d\n' %
+                         (self.version, self.pid))
+
             self.start_jmx_logging()
 
-            # TODO create a process to run the stress test and keep a track
+            # starting stress test
+            stress_thread = threading.Thread(target=self.cassandra_stress)
+            stress_thread.start()
+
+            # TODO keep recording while stress_thread is running
+            while stress_thread.isAlive():
+                pass
 
             self.stop_jmx_logging()
-            logging.info('Stress test STOPPED')
 
-            # TODO put into a Cassandra table and plot
+            # TODO put into a Cassandra table
+            # TODO plot
+
+        else:
+            logging.info('No Cassandra instance found')
+            logging.info('Exiting program with errors')
+            sys.exit(1)
 
 
     def is_cassandra_running(self):
-        """Checks if JMX port is available and if there's a Cassandra instance
-        running.
+        """Checks (through JMX port) if there's a Cassandra instance running.
         """
-        cmd_status = [self.nodetool, 'status', '-h %s' % self.host, '-p %d' % self.jmx_port]
+        cmd_status = [self.nodetool_path, 'status', '-h %s' % self.host, '-p %d' % self.jmx_port]
         logging.info('Checking JMX connection to %s:%d' % (self.host, self.jmx_port))
         logging.info(' '.join(cmd_status))
 
         try:
             output = subprocess.check_output(cmd_status, stderr=subprocess.STDOUT)
+            output = str(output).replace('\\n', '\n').replace('\\r', '\r')[2 : -2]
             logging.info('%s\n' % output)
-
-            self.pid = subprocess.check_output('ps aux | grep cassandra | grep \
-                -v grep | awk \'{print $2}\'', shell=True)
-            self.pid = int(re.sub(r'[^0-9]', '', str(self.pid)))
-
             return True
 
         except subprocess.CalledProcessError as e:
-            logging.error(e.output)
-
+            output = str(e.output).replace('\\n', '\n').replace('\\r', '\r')
+            logging.error('%s\n' % output)
             return False
 
 
+    def get_pid(self):
+        try:
+            cmd_pid = 'ps aux | grep cassandra | grep -v grep | awk \'{print $2}\''
+            logging.info(cmd_pid)
+            pid_sh = subprocess.check_output(cmd_pid, stderr=subprocess.STDOUT,
+                                             shell=True)
+            self.pid = int(re.sub(r'[^0-9]', '', str(pid_sh)))
+
+        except subprocess.CalledProcessError as e:
+            output = str(e.output).replace('\\n', '\n').replace('\\r', '\r')
+            logging.error('%s\n' % output)
+            sys.exit(1)
+
+
+    def get_version(self):
+        try:
+            cmd_version = [self.nodetool_path, 'version', '-h %s' % self.host,
+                           '-p %d' % self.jmx_port]
+            logging.info(' '.join(cmd_version))
+            version_sh = subprocess.check_output(cmd_version, stderr=subprocess.STDOUT)
+            version_sh = str(version_sh).replace('\\n', '\n')[2 : -2]
+            self.version = version_sh.replace('ReleaseVersion:', '').strip() # meio pog
+
+        except subprocess.CalledProcessError as e:
+            output = str(e.output).replace('\\n', '\n').replace('\\r', '\r')
+            logging.error('%s\n' % output)
+            sys.exit(1)
+
+
     def start_jmx_logging(self):
-        # cmd_jmxterm = ['java', '-jar']
-        pass
+        logging.info('Stress test STARTED')
+        # run java for self.host:self.jmx_port, in silent and non-interactive mode
+        cmd_jmxterm = ['java', '-jar', self.jmxterm_path, '-l %s:%s' % (self.host,
+        self.jmx_port), '-v', 'silent', '-n']
+        logging.info(' '.join(cmd_jmxterm))
+
+        try:
+            self.jmxterm_proc = subprocess.Popen(cmd_jmxterm,
+                                                 stdin=subprocess.PIPE,
+                                                 stdout=self.temp_writefile,
+                                                 stderr=self.temp_writefile)
+
+            self.jmx_log_file = open(self.jmx_log_filename, 'w')
+            self.jmx_log_file.write('%s,%s,%s\n' % (METRICS[0], METRICS[1], METRICS[2]))
+
+        except subprocess.CalledProcessError as e:
+            output = str(e.output).replace('\\n', '\n')[2 : -2]
+            logging.error('%s\n' % output)
+            sys.exit(1)
+
+
+    def cassandra_stress(self, n=50000, numthreads=4, sleeping_time=5):
+        """The sleeping time is in seconds.
+        """
+        time.sleep(sleeping_time)
+        cmd_stress = [self.stress_path, 'write', 'n=%d' % n, '-rate threads=%d' %
+                      numthreads]
+        logging.info(' '.join(cmd_stress))
+
+        try:
+            output = subprocess.check_output(cmd_stress, stderr=subprocess.STDOUT)
+            output = str(output).replace('\\n', '\n').replace('\\r', '\r')
+            output = output.replace("\\'", "\'")[2 : -2]
+            logging.info("%s" % output)
+
+        except subprocess.CalledProcessError as e:
+            logging.error('code: %d' % e.returncode)
+            output = str(e.output)[2 : -2]
+            logging.error(output)
+
+        time.sleep(sleeping_time)
 
 
     def stop_jmx_logging(self):
-        # cmd_jmxterm = ['java', '-jar']
+        logging.info('Stress test STOPPED')
+        # self.jmxterm_proc.stdin.write('exit\n')
+        self.temp_writefile.close()
+        self.temp_readfile.close()
         pass
 
 
-    def connect_to_cassandra(self):
-        try:
-            self.cluster = Cluster([self.host], self.client_port, protocol_version=3)
-            self.session = self.cluster.connect()
-            logging.info('Client connected to %s:%d\n' % (self.host, self.client_port))
-
-            return
-
-        except NoHostAvailable as e:
-            logging.error(e.errors)
-
-        sys.exit(1)
-
-
 if __name__ == '__main__':
-    # initialization
     config_log()
 
-    jmxlogger = JMXLogger()
-    jmxlogger.run()
+    jmx_logger = JMX_Logger()
+    jmx_logger.run()
