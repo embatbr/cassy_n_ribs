@@ -3,15 +3,14 @@
 """Code to solve the exercise.
 Do NOT forget to activate the virtual environment (or have the module 'cassandra'
 installed in the root Python).
-
-TODO study the package 'multiprocessing' and check if it's a good replacement to
-'subprocess'.
 """
 
 
 from cassandra.cluster import Cluster, NoHostAvailable
 import logging
+import numpy as np
 import os
+import pylab as pl
 import re
 import subprocess
 import sys
@@ -39,11 +38,10 @@ CLIENT_PORT = 9042
 CLIENT_THRIFT_PORT = 9160
 
 
-LOG_FILENAME = 'jmx_test.log'
-JMX_LOGFILENAME = 'jmx_metrics.csv'
-JMX_TIME_INTERVAL = 2 # in seconds
-STRESS_SLEEP_INTERVAL = 5 # in seconds
-METRICS = ('LiveSSTableCount', 'AllMemTablesDataSize', '95thPercentile')
+LOG_FILENAME = 'jmx.log'
+JMX_TIME_INTERVAL = 1
+STRESS_AFTER_TIME = 5
+METRICS = ['LiveSSTableCount', 'AllMemtablesLiveDataSize', 'Latency']
 
 
 def config_log(filename=LOG_FILENAME):
@@ -82,13 +80,13 @@ class JMX_Logger(object):
 
         self.jmxterm_proc = None
         self.jmx_time_interval = JMX_TIME_INTERVAL
-        self.metrics_writefile = open('metrics', 'ab')
-        self.metrics_readfile = open('metrics', 'r')
-        self.jmx_log_filename = JMX_LOGFILENAME
-        self.jmx_log_file = None
+        self.stress_after_time = STRESS_AFTER_TIME
+        self.metrics_logfile = None
+        self.metrics_gets = dict()
+        self.metrics = dict()
 
 
-    def run(self):
+    def run(self, run_stress=True, check_metrics=True):
         """Executes the monitoring of the Cassandra instance running in a node,
         using JMX.
         """
@@ -102,18 +100,24 @@ class JMX_Logger(object):
             logging.info('Cassandra is RUNNING version %s with PID %d\n' %
                          (self.version, self.pid))
 
-            self.start_jmx_logging()
+            if run_stress:
+                self.start_jmx_logging()
 
-            # starting stress test
-            stress_thread = threading.Thread(target=self.cassandra_stress)
-            stress_thread.start()
+                # starting stress test
+                stress_thread = threading.Thread(target=self.cassandra_stress)
+                stress_thread.start()
 
-            # keep recording while stress_thread is running
-            while stress_thread.isAlive():
-                time.sleep(self.jmx_time_interval)
-                self.log_JMX()
+                # keep recording while stress_thread is running
+                while stress_thread.isAlive():
+                    time.sleep(self.jmx_time_interval)
+                    self.log_metrics()
 
-            self.stop_jmx_logging()
+                self.stop_jmx_logging()
+
+            if check_metrics:
+                self.read_metrics_log()
+                self.assert_metrics()
+                self.plot_metrics()
 
             # TODO put into a Cassandra table
             # TODO plot
@@ -144,6 +148,8 @@ class JMX_Logger(object):
 
 
     def get_pid(self):
+        """Gets the process ID.
+        """
         try:
             cmd_pid = 'ps aux | grep cassandra | grep -v grep | awk \'{print $2}\''
             logging.info(cmd_pid)
@@ -158,6 +164,8 @@ class JMX_Logger(object):
 
 
     def get_version(self):
+        """Gets the version of the Cassandra instance running.
+        """
         try:
             cmd_version = [self.nodetool_path, 'version', '-h %s' % self.host,
                            '-p %d' % self.jmx_port]
@@ -174,26 +182,25 @@ class JMX_Logger(object):
 
     def start_jmx_logging(self, sleeping_time=1):
         logging.info('JMX Recording STARTED')
-        # run java for self.host:self.jmx_port, in silent and non-interactive mode
         cmd_jmxterm = ['java', '-jar', self.jmxterm_path, '-n']
-        #, '-l %s:%s' % (self.host,
-        #self.jmx_port), '-v', 'silent', '-n']
         logging.info(' '.join(cmd_jmxterm))
+        self.metrics_logfile = open('metrics.log', 'wb')
 
         try:
             self.jmxterm_proc = subprocess.Popen(cmd_jmxterm,
                                                  stdin=subprocess.PIPE,
-                                                 stdout=self.metrics_writefile,
-                                                 stderr=self.metrics_writefile)
-            # self.jmxterm_proc.wait()
-            welcome_msg = ''
-            while welcome_msg == '':
-                time.sleep(sleeping_time)
-                welcome_msg = self.metrics_readfile.readline().strip()
-            self.jmxterm_proc.stdin.write(('open %s:%d\n' % (self.host, self.jmx_port)).encode())
+                                                 stdout=self.metrics_logfile,
+                                                 stderr=self.metrics_logfile)
 
-            self.jmx_log_file = open(self.jmx_log_filename, 'w')
-            self.jmx_log_file.write('%s,%s,%s\n' % (METRICS[0], METRICS[1], METRICS[2]))
+            cmd_open = 'open %s:%d\n' % (self.host, self.jmx_port)
+            self.jmxterm_proc.stdin.write(cmd_open.encode())
+
+            self.metrics_gets[METRICS[0]] = 'get -s -b org.apache.cassandra.metrics:\
+type=ColumnFamily,keyspace=keyspace1,scope=standard1,name=%s Value' % METRICS[0]
+            self.metrics_gets[METRICS[1]] = 'get -s -b org.apache.cassandra.metrics:\
+type=ColumnFamily,keyspace=keyspace1,scope=standard1,name=%s Value' % METRICS[1]
+            self.metrics_gets[METRICS[2]] = 'get -s -b org.apache.cassandra.metrics:\
+type=ClientRequest,scope=Write,name=%s 95thPercentile' % METRICS[2]
 
         except subprocess.CalledProcessError as e:
             output = str(e.output).replace('\\n', '\n')[2 : -2]
@@ -201,13 +208,12 @@ class JMX_Logger(object):
             sys.exit(1)
 
 
-    def cassandra_stress(self, num_iter=50000, numthreads=4, sleeping_time=STRESS_SLEEP_INTERVAL):
+    def cassandra_stress(self, num_iter=1000000, num_threads=10):
         """The sleeping time is in seconds.
         """
-        time.sleep(sleeping_time)
         logging.info('Stress test STARTED')
-        cmd_stress = [self.stress_path, 'write', 'n=%d' % num_iter, '-rate threads=%d' %
-                      numthreads]
+        cmd_stress = [self.stress_path, 'write', 'no-warmup', 'n=%d' % num_iter,
+                      '-rate threads=%d' % num_threads]
         logging.info(' '.join(cmd_stress))
 
         try:
@@ -215,45 +221,87 @@ class JMX_Logger(object):
             output = str(output).replace('\\n', '\n').replace('\\r', '\r')
             output = output.replace("\\'", "\'")[2 : -2]
             logging.info("%s" % output)
+            time.sleep(self.stress_after_time)
 
         except subprocess.CalledProcessError as e:
             logging.error('err_code: %d' % e.returncode)
-            output = str(e.output)[2 : -2]
+            output = str(e.output).replace('\\n', '\n').replace('\\r', '\r')
+            output = output.replace("\\'", "\'")[2 : -2]
             logging.error(output)
 
         logging.info('Stress test STOPPED')
-        time.sleep(sleeping_time)
 
 
-    def log_JMX(self, sleeping_time=0.2):
-        get_cf = r'get -s -b org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=standard1,name=%s Value'
-        getLiveSSTableCount = get_cf % 'LiveSSTableCount'
-        getAllMemTablesDataSize = get_cf % 'AllMemTablesDataSize'
-        get95thPercentile = r'get -s -b org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency 95thPercentile'
-
-        gets = [getLiveSSTableCount, getAllMemTablesDataSize, get95thPercentile]
-        outputs = list()
-
-        for get in gets:
+    def log_metrics(self):
+        for key in self.metrics_gets.keys():
+            get = self.metrics_gets[key]
             logging.info(get)
             self.jmxterm_proc.stdin.write(('%s\n' % get).encode())
-            time.sleep(sleeping_time)
-            output = self.metrics_readfile.readline().strip()
-            output = 0 if output == '' else output
-            outputs.append(output)
-
-        print(outputs)
-
-        self.jmx_log_file.write('%s,%s,%s\n' % (outputs[0], outputs[1], outputs[2]))
-        logging.info('JMX metrics logged')
 
 
     def stop_jmx_logging(self):
-        logging.info('JMX recording STOPPED')
+        logging.info('JMX recording STOPPED\n')
         self.jmxterm_proc.stdin.write(('exit\n').encode())
-        self.metrics_writefile.close()
-        self.metrics_readfile.close()
-        pass
+        self.metrics_logfile.close()
+
+
+    def read_metrics_log(self):
+        for METRIC in METRICS:
+            self.metrics[METRIC] = list()
+
+        self.metrics_logfile = open('metrics.log')
+        lines = self.metrics_logfile.readlines()
+        i = 0
+        while i < len(lines):
+            line = lines[i].strip()
+            i = i + 1
+
+            if line.startswith('#mbean'):
+                result = re.search('name=', line)
+
+                if not result is None:
+                    end_pos = result.span()[1]
+                    key = line[end_pos : -1]
+                    line = lines[i].strip()
+                    i = i + 1
+
+                    line = float(line) if key == 'Latency' else int(line)
+                    self.metrics[key].append(line)
+
+        for METRIC in METRICS:
+            self.metrics[METRIC] = np.array(self.metrics[METRIC])
+
+
+    def assert_metrics(self):
+        logging.info('Asserting metrics')
+
+        for METRIC in METRICS:
+            metrics = self.metrics[METRIC]
+
+            if np.sum(metrics) == 0.0:
+                logging.info('%s has ALL its elements with value ZERO' % METRIC)
+            elif len(metrics[metrics == 0]) > 0:
+                logging.info('%s has ZEROS' % METRIC)
+
+            if len(metrics[metrics < 0]) > 0:
+                logging.info('%s has NEGATIVE values' % METRIC)
+
+
+    def plot_metrics(self):
+        logging.info('Plotting metrics')
+
+        kwargs = ['ro-', 'go-', 'bo-']
+        position = 1
+        for (METRIC, kwarg) in zip(METRICS, kwargs):
+            metrics = self.metrics[METRIC]
+            pl.subplot(3, 1, position)
+            pl.grid(True)
+            pl.plot(metrics, kwarg)
+            pl.ylabel(METRIC)
+
+            position = position + 1
+
+        pl.show()
 
 
 if __name__ == '__main__':

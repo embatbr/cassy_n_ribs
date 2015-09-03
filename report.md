@@ -1,11 +1,11 @@
 # Report
 
-In this markdown file I report how the test was answered. This format was chosen for being human readable. This report and the codes written can be found in the Github repository [cassy_n_ribs](https://github.com/embatbr/cassy_n_ribs) (the name is to keep a low profile).
+In this markdown file I report how the test was answered. This format was chosen for being human readable (and renderable to html). This report and the codes written can be found in the Github repository [cassy_n_ribs](https://github.com/embatbr/cassy_n_ribs) (the name is to keep a low profile).
 
 
 ## Learning
 
-I used many sources (documentation, books and tutorials - Kiyu Gabriel's was specially useful) to understand how Cassandra works *under the hood* (needed before running any tests). Also, I had to learn how to used the [Python driver for Cassandra](https://github.com/datastax/python-driver) and [Jmxterm](http://wiki.cyclopsgroup.org/jmxterm/).
+I used many sources (documentation, books and tutorials - Kiyu Gabriel's was specially useful) to understand how Cassandra works *under the hood* (needed before running any tests). Also, I had to learn how to used the [Python driver for Cassandra](https://github.com/datastax/python-driver) to connect with the database and [JMXTerm](http://wiki.cyclopsgroup.org/jmxterm/) to record the metrics during the stress test.
 
 
 ## Tools Used
@@ -33,15 +33,9 @@ Cassandra architecture has many similarities with Bitcoin's blockchain.
 
 ## Implementation and Tests
 
-In my machine I created a Python virtual environment using `virtualenv` and `virtualenvwrapper` (the environment folder is created in the `HOME` directory). Its name is `ds_hire` and is activated typing
+In my machine I created a Python virtual environment using `virtualenv` and `virtualenvwrapper` (the environment hidden folder is created in the `HOME` directory). Its name is `ds_hire` and it is activated typing `workon ds_hire` on the terminal.
 
-```
-$ workon ds_hire
-```
-
-on the terminal.
-
-The directories *data* and *logs* are created in Cassandra's own directory. There is a recommendation to create them in */var/lib/cassandra*, but this would require sudo privilegies and is an unnecessary overhead to add here (also the current mode is easier to check in the Sublime Text).
+The directories *data* and *logs* are created in Cassandra's own directory (inside the directory *project*). There is a recommendation to create them in */var/lib/cassandra*, but this would require sudo privilegies and is an unnecessary overhead to add here (also the current mode is easier to check using Sublime Text).
 
 
 ### Test: Single Node Cluster
@@ -52,8 +46,10 @@ The directories *data* and *logs* are created in Cassandra's own directory. Ther
 The list of tasks defined in the document *JMXTextScreen.pdf*.
 
 1. OK
-2.
-3.
-4.
-5.
-6.
+2. OK. The metric "AllMemTablesDataSize" was (probably) renamed to "AllMemtablesLiveDataSize" in the newer versions.
+3. OK. No extras. n = 1000000, #threads = 10 (changeable)
+4. OK
+5. OK. Recorded in the file *jmx.log* along with many other infos, if existent.
+6. TODO
+7 (graphs). OK. Plotting on the screen (TODO save in a file).
+8 (explain graphs). TODO
