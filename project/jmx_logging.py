@@ -38,15 +38,25 @@ CLIENT_PORT = 9042
 CLIENT_THRIFT_PORT = 9160
 
 
-LOG_FILENAME = 'jmx.log'
+LOGS_DIR = 'logs'
+LOG_FILENAME = '%s/jmx.log' % LOGS_DIR
+LOG_METRICS = '%s/%s.metrics.log' % (LOGS_DIR, '%s')
+GRAPHS_DIR = 'graphs'
+
 JMX_TIME_INTERVAL = 1
 STRESS_AFTER_TIME = 5
 METRICS = ['LiveSSTableCount', 'AllMemtablesLiveDataSize', 'Latency']
+SCOPES = ['standard1', 'counter1', 'Counter3']
 
 
 def config_log(filename=LOG_FILENAME):
     """Configures the log.
     """
+    if not os.path.exists(LOGS_DIR):
+        os.mkdir(LOGS_DIR)
+    if not os.path.exists(GRAPHS_DIR):
+        os.mkdir(GRAPHS_DIR)
+
     logging.basicConfig(
         filename=filename,
         filemode='w',
@@ -84,6 +94,7 @@ class JMX_Logger(object):
         self.metrics_logfile = None
         self.metrics_gets = dict()
         self.metrics = dict()
+        self.scopes = SCOPES
 
 
     def run(self, run_stress=True, check_metrics=True):
@@ -100,27 +111,30 @@ class JMX_Logger(object):
             logging.info('Cassandra is RUNNING version %s with PID %d\n' %
                          (self.version, self.pid))
 
-            if run_stress:
-                self.start_jmx_logging()
+            for scope in self.scopes:
+                logging.info('KEYSPACE = keyspace1')
+                logging.info('SCOPE = %s\n' % scope)
 
-                # starting stress test
-                stress_thread = threading.Thread(target=self.cassandra_stress)
-                stress_thread.start()
+                if run_stress:
+                    self.start_jmx_logging(scope)
 
-                # keep recording while stress_thread is running
-                while stress_thread.isAlive():
-                    time.sleep(self.jmx_time_interval)
-                    self.log_metrics()
+                    # starting stress test
+                    stress_thread = threading.Thread(target=self.cassandra_stress)
+                    stress_thread.start()
 
-                self.stop_jmx_logging()
+                    # keep recording while stress_thread is running
+                    while stress_thread.isAlive():
+                        time.sleep(self.jmx_time_interval)
+                        self.log_metrics()
 
-            if check_metrics:
-                self.read_metrics_log()
-                self.assert_metrics()
-                self.plot_metrics()
+                    self.stop_jmx_logging()
 
-            # TODO put into a Cassandra table
-            # TODO plot
+                if check_metrics:
+                    self.read_metrics_log(scope)
+                    self.assert_metrics(scope)
+                    self.plot_metrics(scope)
+
+                # TODO put into a Cassandra table
 
         else:
             logging.info('No Cassandra instance found')
@@ -180,11 +194,11 @@ class JMX_Logger(object):
             sys.exit(1)
 
 
-    def start_jmx_logging(self, sleeping_time=1):
+    def start_jmx_logging(self, scope, sleeping_time=1):
         logging.info('JMX Recording STARTED')
         cmd_jmxterm = ['java', '-jar', self.jmxterm_path, '-n']
         logging.info(' '.join(cmd_jmxterm))
-        self.metrics_logfile = open('metrics.log', 'wb')
+        self.metrics_logfile = open(LOG_METRICS % scope, 'wb')
 
         try:
             self.jmxterm_proc = subprocess.Popen(cmd_jmxterm,
@@ -196,9 +210,9 @@ class JMX_Logger(object):
             self.jmxterm_proc.stdin.write(cmd_open.encode())
 
             self.metrics_gets[METRICS[0]] = 'get -s -b org.apache.cassandra.metrics:\
-type=ColumnFamily,keyspace=keyspace1,scope=standard1,name=%s Value' % METRICS[0]
+type=ColumnFamily,keyspace=keyspace1,scope=%s,name=%s Value' % (scope, METRICS[0])
             self.metrics_gets[METRICS[1]] = 'get -s -b org.apache.cassandra.metrics:\
-type=ColumnFamily,keyspace=keyspace1,scope=standard1,name=%s Value' % METRICS[1]
+type=ColumnFamily,keyspace=keyspace1,scope=%s,name=%s Value' % (scope, METRICS[1])
             self.metrics_gets[METRICS[2]] = 'get -s -b org.apache.cassandra.metrics:\
 type=ClientRequest,scope=Write,name=%s 95thPercentile' % METRICS[2]
 
@@ -245,11 +259,11 @@ type=ClientRequest,scope=Write,name=%s 95thPercentile' % METRICS[2]
         self.metrics_logfile.close()
 
 
-    def read_metrics_log(self):
+    def read_metrics_log(self, scope):
         for METRIC in METRICS:
             self.metrics[METRIC] = list()
 
-        self.metrics_logfile = open('metrics.log')
+        self.metrics_logfile = open(LOG_METRICS % scope)
         lines = self.metrics_logfile.readlines()
         i = 0
         while i < len(lines):
@@ -272,8 +286,8 @@ type=ClientRequest,scope=Write,name=%s 95thPercentile' % METRICS[2]
             self.metrics[METRIC] = np.array(self.metrics[METRIC])
 
 
-    def assert_metrics(self):
-        logging.info('Asserting metrics')
+    def assert_metrics(self, scope):
+        logging.info('Asserting metrics for SCOPE = %s' % scope)
 
         for METRIC in METRICS:
             metrics = self.metrics[METRIC]
@@ -287,25 +301,33 @@ type=ClientRequest,scope=Write,name=%s 95thPercentile' % METRICS[2]
                 logging.info('%s has NEGATIVE values' % METRIC)
 
 
-    def plot_metrics(self):
-        logging.info('Plotting metrics')
+    def plot_metrics(self, scope):
+        logging.info('Plotting metrics\n')
 
-        kwargs = ['ro-', 'go-', 'bo-']
-        position = 1
+        kwargs = ['r.-', 'g.-', 'b.-']
+
+
         for (METRIC, kwarg) in zip(METRICS, kwargs):
             metrics = self.metrics[METRIC]
-            pl.subplot(3, 1, position)
+
+            timespan = len(metrics)
+            endtime = self.jmx_time_interval * timespan
+            timevals = np.linspace(0, endtime, timespan)
+
+            fig = pl.figure()
+            fig.suptitle(METRIC)
             pl.grid(True)
-            pl.plot(metrics, kwarg)
-            pl.ylabel(METRIC)
+            pl.plot(timevals, metrics, kwarg)
+            pl.xlabel('(seconds)')
 
-            position = position + 1
-
-        pl.show()
+            pl.savefig('%s/%s.%s.png' % (GRAPHS_DIR, scope, METRIC))
 
 
 if __name__ == '__main__':
+    run_stress=True
+    check_metrics=True
+
     config_log()
 
     jmx_logger = JMX_Logger()
-    jmx_logger.run()
+    jmx_logger.run(run_stress, check_metrics)

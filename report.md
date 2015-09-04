@@ -5,7 +5,7 @@ In this markdown file I report how the test was answered. This format was chosen
 
 ## Learning
 
-I used many sources (documentation, books and tutorials - Kiyu Gabriel's was specially useful) to understand how Cassandra works *under the hood* (needed before running any tests). Also, I had to learn how to used the [Python driver for Cassandra](https://github.com/datastax/python-driver) to connect with the database and [JMXTerm](http://wiki.cyclopsgroup.org/jmxterm/) to record the metrics during the stress test.
+I used many sources (docs, books and tutorials - Kiyu Gabriel's was specially useful) to understand how Cassandra works *under the hood* (needed before running any tests). Also, I had to learn how to used the [Python driver for Cassandra](https://github.com/datastax/python-driver) to connect with the database and [JMXTerm](http://wiki.cyclopsgroup.org/jmxterm/) to record the metrics during the stress test.
 
 
 ## Tools Used
@@ -37,9 +37,10 @@ In my machine I created a Python virtual environment using `virtualenv` and `vir
 
 The directories *data* and *logs* are created in Cassandra's own directory (inside the directory *project*). There is a recommendation to create them in */var/lib/cassandra*, but this would require sudo privilegies and is an unnecessary overhead to add here (also the current mode is easier to check using Sublime Text).
 
+The stress test creates a keyspace named **keyspace1**, with scopes **counter1**, **Counter3** and **standard1**.
+
 
 ### Test: Single Node Cluster
-
 
 #### Tasks
 
