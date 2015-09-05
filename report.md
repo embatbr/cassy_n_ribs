@@ -11,8 +11,10 @@ I used many sources (docs, books and tutorials - Kiyu Gabriel's was specially us
 ## Tools Used
 
 - Java 7.
+- Python 3.4.
 - Apache Cassandra 2.1.9, saved in the directory *project* (and gitignored).
 - [Jmxterm](http://wiki.cyclopsgroup.org/jmxterm/download.html), a command line interface for querying jmx metrics. Saved in the directory *project/lib*.
+- Pythn driver for Cassandra, version 2.7.1.
 
 
 ## Understanding of the Architecture

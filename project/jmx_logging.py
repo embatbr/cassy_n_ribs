@@ -47,7 +47,7 @@ GRAPHS_DIR = 'graphs'
 JMX_TIME_INTERVAL = 1
 STRESS_AFTER_TIME = 5
 METRICS = ['LiveSSTableCount', 'AllMemtablesLiveDataSize', 'Latency']
-STRESS_T_KEYSPACE = 'keyspace1'
+STRESS_TEST_KEYSPACE = 'keyspace1'
 SCOPES = ['standard1', 'counter1', 'Counter3']
 
 JMX_METRICS_KEYSPACE = 'jmx_metrics_keyspace'
@@ -97,7 +97,7 @@ class JMX_Logger(object):
         self.jmx_time_interval = JMX_TIME_INTERVAL
         self.stress_after_time = STRESS_AFTER_TIME
 
-        self.keyspace = STRESS_T_KEYSPACE
+        self.keyspace = STRESS_TEST_KEYSPACE
         self.scopes = SCOPES
 
         self.metrics_logfile = None
@@ -108,7 +108,7 @@ class JMX_Logger(object):
         self.jmx_metrics_table = JMX_METRICS_TABLE
 
 
-    def run(self, run_stress=True, check_metrics=True):
+    def run(self, run_stress=True, check_metrics=True, record_on_table=True):
         """Executes the monitoring of the Cassandra instance running in a node,
         using JMX.
         """
@@ -143,9 +143,11 @@ class JMX_Logger(object):
                 if check_metrics:
                     self.read_metrics_log(scope)
                     self.assert_metrics(scope)
-                    keyspace = '%s_%s' % (self.jmx_metrics_keyspace, scope)
-                    self.record_tables(keyspace, scope)
                     self.plot_metrics(scope)
+
+                    if record_on_table:
+                        keyspace_scope = '%s_%s' % (self.jmx_metrics_keyspace, scope)
+                        self.record_tables(keyspace_scope)
 
 
                 # TODO put into a Cassandra table
@@ -278,23 +280,25 @@ type=ClientRequest,scope=Write,name=%s 95thPercentile' % METRICS[2]
             self.metrics[METRIC] = list()
 
         self.metrics_logfile = open(LOG_METRICS % scope)
-        lines = self.metrics_logfile.readlines()
-        i = 0
-        while i < len(lines):
-            line = lines[i].strip()
-            i = i + 1
+        lines = iter(self.metrics_logfile.readlines())
+        record = True
+        while record:
+            line = next(lines, None)
+            if line is None:
+                record = False
 
-            if line.startswith('#mbean'):
+            elif line.startswith('#mbean'):
                 result = re.search('name=', line)
 
-                if not result is None:
+                if not(result is None):
                     end_pos = result.span()[1]
-                    key = line[end_pos : -1]
-                    line = lines[i].strip()
-                    i = i + 1
+                    key = line[end_pos : -2]
+                    line = next(lines, None)
 
-                    line = float(line) if key == 'Latency' else int(line)
-                    self.metrics[key].append(line)
+                    if not(line is None):
+                        line = line[ : -1]
+                        value = float(line) if key == 'Latency' else int(line)
+                        self.metrics[key].append(value)
 
         for METRIC in METRICS:
             self.metrics[METRIC] = np.array(self.metrics[METRIC])
@@ -317,69 +321,10 @@ type=ClientRequest,scope=Write,name=%s 95thPercentile' % METRICS[2]
         logging.info('End of assertations\n')
 
 
-    def record_tables(self, keyspace, scope):
-        logging.info('Connecting to %s:%d' % (self.host, self.client_port))
-        cluster = None
-        session = None
-
-        try:
-            cluster = Cluster(contact_points=[self.host], port=self.client_port,
-                              protocol_version=3, connect_timeout=50)
-            session = cluster.connect()
-
-        except NoHostAvailable as e:
-            logging.error('error_code = %d, NoHostAvailable' % e.error_code)
-
-        # flushing the keyspace
-        try:
-            cmd_drop_keyspace = "DROP KEYSPACE %s" % keyspace
-            logging.info('clq: %s' % cmd_drop_keyspace)
-            session.execute(cmd_drop_keyspace)
-
-        except ConfigurationException as e:
-            logging.error('error_code = %d, keyspace %s does not exist' %
-                          (e.error_code, keyspace))
-
-        except OperationTimedOut as e:
-            logging.error('error_code = %d, OperationTimedOut' % e.error_code)
-
-        table_name = '%s.%s' % (keyspace, self.jmx_metrics_table)
-
-        try:
-            cmd_create_keyspace = 'CREATE KEYSPACE %s WITH REPLICATION = {\
-    \'class\' : \'SimpleStrategy\', \'replication_factor\' : 1}; ' % keyspace
-            logging.info('cql: %s' % cmd_create_keyspace)
-            session.execute(cmd_create_keyspace)
-
-            # as the keyspace is defined by the scope, there is no need of composite key here
-            cmd_create_table = 'CREATE TABLE %s (sample int PRIMARY KEY,\
-     %s int, %s int, %s float);' % (table_name, METRICS[0], METRICS[1], METRICS[2])
-            logging.info(cmd_create_table)
-            session.execute(cmd_create_table)
-
-            # inserting values
-            num_rows = len(self.metrics[METRICS[0]])
-            for sample in range(num_rows):
-                cmd_insert = 'INSERT INTO %s (sample, %s, %s, %s) VALUES \
-    (%d, %d, %d, %f)' % (table_name, METRICS[0], METRICS[1], METRICS[2], (sample + 1),
-                         self.metrics[METRICS[0]][sample], self.metrics[METRICS[1]][sample],
-                         self.metrics[METRICS[2]][sample])
-                logging.info('cql: %s' % cmd_insert)
-
-        except OperationTimedOut as e:
-            logging.error('error_code = %d, OperationTimedOut' % e.error_code)
-
-
-        logging.info('Shutting down the connection\n')
-        session.shutdown()
-        cluster.shutdown()
-
-
     def plot_metrics(self, scope):
         logging.info('Plotting metrics\n')
 
         kwargs = ['r.-', 'g.-', 'b.-']
-
 
         for (METRIC, kwarg) in zip(METRICS, kwargs):
             metrics = self.metrics[METRIC]
@@ -397,11 +342,75 @@ type=ClientRequest,scope=Write,name=%s 95thPercentile' % METRICS[2]
             pl.savefig('%s/%s.%s.png' % (GRAPHS_DIR, scope, METRIC))
 
 
+    def record_tables(self, keyspace_scope):
+        logging.info('Connecting to %s:%d' % (self.host, self.client_port))
+        cluster = None
+        session = None
+
+        try:
+            cluster = Cluster(contact_points=[self.host], port=self.client_port,
+                              protocol_version=3, connect_timeout=50)
+            session = cluster.connect()
+
+        except NoHostAvailable as e:
+            logging.error('error_code = %d, NoHostAvailable' % e.error_code)
+
+        # flushing the keyspace
+        try:
+            cmd_drop_keyspace = "DROP KEYSPACE %s" % keyspace_scope
+            logging.info('clq: %s' % cmd_drop_keyspace)
+            session.execute(cmd_drop_keyspace)
+
+        except ConfigurationException as e:
+            logging.error('error_code = %d, keyspace %s does not exist' %
+                          (e.error_code, keyspace_scope))
+
+        except OperationTimedOut as e:
+            logging.error('error_code = %d, OperationTimedOut' % e.error_code)
+
+        table_name = '%s.%s' % (keyspace_scope, self.jmx_metrics_table)
+
+        try:
+            cmd_create_keyspace = 'CREATE KEYSPACE %s WITH REPLICATION = {\
+\'class\' : \'SimpleStrategy\', \'replication_factor\' : 1} AND DURABLE_WRITES = true;' % keyspace_scope
+            logging.info('cql: %s' % cmd_create_keyspace)
+            session.execute(cmd_create_keyspace)
+
+            # as the keyspace is defined by the scope, there is no need of composite key here
+            cmd_create_table = 'CREATE TABLE %s (sample int PRIMARY KEY, %s int, \
+%s int, %s float);' % (table_name, METRICS[0], METRICS[1], METRICS[2])
+            logging.info(cmd_create_table)
+            session.execute(cmd_create_table)
+
+            # inserting values
+            header_insert = 'INSERT INTO %s (sample, %s, %s, %s) VALUES' %\
+                          (table_name, METRICS[0], METRICS[1], METRICS[2])
+
+            sample = 0
+            num_samples = len(self.metrics[METRICS[0]])
+            for sample in range(num_samples):
+                primary_key = sample + 1
+                cmd_insert = '%s (%d, %d, %d, %f);' % (header_insert, primary_key,
+                                           self.metrics[METRICS[0]][sample],
+                                           self.metrics[METRICS[1]][sample],
+                                           self.metrics[METRICS[2]][sample])
+                logging.info('cql: %s' % cmd_insert)
+                session.execute(cmd_insert)
+
+        except OperationTimedOut as e:
+            logging.error('error_code = %d, OperationTimedOut' % e.error_code)
+
+        logging.info('Shutting down the connection\n')
+        session.shutdown()
+        cluster.shutdown()
+
+
 if __name__ == '__main__':
     run_stress = True
     check_metrics = True
+    record_on_table = True
 
     config_log()
 
     jmx_logger = JMX_Logger()
-    jmx_logger.run(run_stress, check_metrics)
+    jmx_logger.run(run_stress, check_metrics, record_on_table)
