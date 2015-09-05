@@ -1,813 +1,1065 @@
 Welcome to JMX terminal. Type "help" for available commands.
 #Connection to 127.0.0.1:7199 is opened
-#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-276.05779999999976
+193.46854999999994
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+193.46854999999994
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-272.11679999999996
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+193.46854999999994
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-272.11679999999996
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+193.46854999999994
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-272.11679999999996
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+193.46854999999994
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-272.11679999999996
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+193.46854999999994
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-276.05779999999976
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+193.46854999999994
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-276.05779999999976
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+193.46854999999994
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-276.05779999999976
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+193.46854999999994
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-276.05779999999976
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+193.46854999999994
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-276.05779999999976
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+193.46854999999994
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-276.05779999999976
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+193.46854999999994
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-272.11679999999996
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+223.6973
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-281.3166999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+223.6973
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-276.05779999999976
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+223.6973
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-276.05779999999976
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+224.48104999999995
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-276.05779999999976
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+224.48104999999995
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-276.05779999999976
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+224.48104999999995
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-276.05779999999976
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+224.48104999999995
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-276.05779999999976
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+224.48104999999995
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-276.05779999999976
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+224.48104999999995
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-276.05779999999976
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+230.93294999999966
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-276.05779999999976
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+230.93294999999966
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-276.05779999999976
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+244.84309999999962
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-266.19554999999957
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+244.84309999999962
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-266.19554999999957
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+244.84309999999962
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-266.19554999999957
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+244.84309999999962
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-268.25564999999983
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+244.84309999999962
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-268.25564999999983
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+244.84309999999962
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-268.25564999999983
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+244.84309999999962
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-263.8288999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+244.84309999999962
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-263.8288999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+244.84309999999962
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-263.8288999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+244.84309999999962
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-263.8288999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+244.84309999999962
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-263.8288999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+244.84309999999962
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-263.8288999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+216.0085
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-230.09449999999987
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+216.0085
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-230.09449999999987
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+216.0085
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-230.09449999999987
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+216.0085
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-230.09449999999987
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+216.0085
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-230.09449999999987
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+216.0085
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-230.09449999999987
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+216.0085
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-230.09449999999987
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+209.60129999999938
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-230.09449999999987
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+209.60129999999938
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-230.09449999999987
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+209.60129999999938
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-228.4277
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+209.60129999999938
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-228.4277
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+209.60129999999938
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-228.4277
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+220.21769999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-223.47805
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+219.61264999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-223.25744999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+219.61264999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-223.25744999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+219.61264999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-223.25744999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+219.61264999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-223.25744999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+219.61264999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-223.47805
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+219.61264999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-223.25744999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+219.61264999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-223.25744999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+219.61264999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-223.25744999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+217.80464999999987
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-223.25744999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+217.80464999999987
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-223.25744999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+201.66349999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-218.7880499999999
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+201.66349999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-218.7880499999999
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+201.66349999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-218.7880499999999
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+201.66349999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-218.7880499999999
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+201.66349999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-218.7880499999999
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+201.66349999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-218.7880499999999
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+201.66349999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-218.7880499999999
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+201.66349999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-218.7880499999999
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+201.66349999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-218.7880499999999
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+201.66349999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-218.7880499999999
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+201.66349999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-218.7880499999999
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+201.66349999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-218.7880499999999
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+203.06894999999992
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-214.28864999999982
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+203.06894999999992
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-214.28864999999982
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+203.06894999999992
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-214.28864999999982
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+203.06894999999992
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-214.28864999999982
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+203.06894999999992
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-214.28864999999982
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+203.06894999999992
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-214.28864999999982
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+203.06894999999992
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-214.28864999999982
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+203.06894999999992
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-214.28864999999982
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+203.06894999999992
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-214.28864999999982
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+203.06894999999992
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-214.28864999999982
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+203.06894999999992
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-214.28864999999982
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+203.06894999999992
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-214.28864999999982
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+216.9478499999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-208.85119999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+216.9478499999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-208.85119999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+216.9478499999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-208.85119999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+216.9478499999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-208.85119999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+216.9478499999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-208.25769999999994
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+216.9478499999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-208.25769999999994
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+216.9478499999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-208.25769999999994
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+219.3151
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-208.25769999999994
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+216.9478499999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-208.25769999999994
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+216.9478499999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-208.25769999999994
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+216.9478499999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-208.25769999999994
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+213.03854999999996
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
-#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-201.6069999999999
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+213.03854999999996
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-201.6069999999999
+213.03854999999996
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+213.03854999999996
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-203.49839999999992
+213.03854999999996
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+213.03854999999996
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-203.49839999999992
+213.03854999999996
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+213.03854999999996
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-203.49839999999992
+210.5546999999998
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+206.2434999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
+0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-203.49839999999992
+206.2434999999998
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+206.2434999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-203.49839999999992
+197.09444999999997
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+197.09444999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-203.49839999999992
+197.09444999999997
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+197.09444999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
+0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-203.49839999999992
+197.09444999999997
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+197.09444999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-203.49839999999992
+197.09444999999997
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+197.09444999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-201.6069999999999
+197.09444999999997
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+197.09444999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
+0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-201.6069999999999
+197.09444999999997
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+197.09444999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-198.28419999999994
+206.2434999999998
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+206.2434999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
+0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-198.28419999999994
+206.2434999999998
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+206.2434999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-198.28419999999994
+206.2434999999998
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+206.2434999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-195.89829999999984
+206.2434999999998
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+206.2434999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
+0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-195.89829999999984
+206.2434999999998
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+213.03854999999996
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-195.89829999999984
+213.03854999999996
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+188.87349999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
+0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-195.89829999999984
+188.87349999999998
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+188.87349999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-195.89829999999984
+188.87349999999998
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+188.87349999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-195.89829999999984
+188.87349999999998
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+188.87349999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
+0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-195.89829999999984
+188.87349999999998
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+188.87349999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-195.89829999999984
+188.87349999999998
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+188.87349999999998
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
+0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-195.89829999999984
+188.87349999999998
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+173.70719999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-203.49839999999992
+173.70719999999997
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+173.70719999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-203.49839999999992
+173.70719999999997
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+173.70719999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
+0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-201.6069999999999
+173.70719999999997
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+173.70719999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-201.6069999999999
+173.70719999999997
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+173.70719999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
+0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-201.6069999999999
+173.70719999999997
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+173.70719999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-201.6069999999999
+173.70719999999997
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+159.77509999999992
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-201.6069999999999
+159.77509999999992
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+159.77509999999992
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
+0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-201.6069999999999
+159.77509999999992
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+158.54884999999996
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-201.6069999999999
+158.54884999999996
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+158.54884999999996
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
+0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-201.6069999999999
+158.54884999999996
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+157.9556
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-201.6069999999999
+157.9556
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+157.9556
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-185.80789999999985
+155.22294999999997
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+155.22294999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
+0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-185.80789999999985
+155.22294999999997
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+155.22294999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-185.80789999999985
+155.22294999999997
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+155.22294999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
+0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-185.80789999999985
+155.22294999999997
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+155.22294999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-185.80789999999985
+155.22294999999997
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+155.22294999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-185.80789999999985
+155.22294999999997
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
 0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+155.22294999999997
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
+0
 #mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
-185.80789999999985
+151.61294999999993
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
+0
 #mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=AllMemtablesLiveDataSize:
+0
+#mbean = org.apache.cassandra.metrics:type=ClientRequest,scope=Write,name=Latency:
+151.61294999999993
+#mbean = org.apache.cassandra.metrics:type=ColumnFamily,keyspace=keyspace1,scope=counter1,name=LiveSSTableCount:
 0
 #bye

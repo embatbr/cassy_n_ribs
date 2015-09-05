@@ -6,7 +6,8 @@ installed in the root Python).
 """
 
 
-from cassandra.cluster import Cluster, NoHostAvailable
+from cassandra.cluster import Cluster, NoHostAvailable, OperationTimedOut
+from cassandra.protocol import ConfigurationException
 import logging
 import numpy as np
 import os
@@ -46,7 +47,11 @@ GRAPHS_DIR = 'graphs'
 JMX_TIME_INTERVAL = 1
 STRESS_AFTER_TIME = 5
 METRICS = ['LiveSSTableCount', 'AllMemtablesLiveDataSize', 'Latency']
+STRESS_T_KEYSPACE = 'keyspace1'
 SCOPES = ['standard1', 'counter1', 'Counter3']
+
+JMX_METRICS_KEYSPACE = 'jmx_metrics_keyspace'
+JMX_METRICS_TABLE = 'jmx_metrics_table'
 
 
 def config_log(filename=LOG_FILENAME):
@@ -91,10 +96,16 @@ class JMX_Logger(object):
         self.jmxterm_proc = None
         self.jmx_time_interval = JMX_TIME_INTERVAL
         self.stress_after_time = STRESS_AFTER_TIME
+
+        self.keyspace = STRESS_T_KEYSPACE
+        self.scopes = SCOPES
+
         self.metrics_logfile = None
         self.metrics_gets = dict()
         self.metrics = dict()
-        self.scopes = SCOPES
+
+        self.jmx_metrics_keyspace = JMX_METRICS_KEYSPACE
+        self.jmx_metrics_table = JMX_METRICS_TABLE
 
 
     def run(self, run_stress=True, check_metrics=True):
@@ -112,7 +123,7 @@ class JMX_Logger(object):
                          (self.version, self.pid))
 
             for scope in self.scopes:
-                logging.info('KEYSPACE = keyspace1')
+                logging.info('KEYSPACE = %s' % self.keyspace)
                 logging.info('SCOPE = %s\n' % scope)
 
                 if run_stress:
@@ -132,7 +143,10 @@ class JMX_Logger(object):
                 if check_metrics:
                     self.read_metrics_log(scope)
                     self.assert_metrics(scope)
+                    keyspace = '%s_%s' % (self.jmx_metrics_keyspace, scope)
+                    self.record_tables(keyspace, scope)
                     self.plot_metrics(scope)
+
 
                 # TODO put into a Cassandra table
 
@@ -210,9 +224,9 @@ class JMX_Logger(object):
             self.jmxterm_proc.stdin.write(cmd_open.encode())
 
             self.metrics_gets[METRICS[0]] = 'get -s -b org.apache.cassandra.metrics:\
-type=ColumnFamily,keyspace=keyspace1,scope=%s,name=%s Value' % (scope, METRICS[0])
+type=ColumnFamily,keyspace=%s,scope=%s,name=%s Value' % (self.keyspace, scope, METRICS[0])
             self.metrics_gets[METRICS[1]] = 'get -s -b org.apache.cassandra.metrics:\
-type=ColumnFamily,keyspace=keyspace1,scope=%s,name=%s Value' % (scope, METRICS[1])
+type=ColumnFamily,keyspace=%s,scope=%s,name=%s Value' % (self.keyspace, scope, METRICS[1])
             self.metrics_gets[METRICS[2]] = 'get -s -b org.apache.cassandra.metrics:\
 type=ClientRequest,scope=Write,name=%s 95thPercentile' % METRICS[2]
 
@@ -300,6 +314,66 @@ type=ClientRequest,scope=Write,name=%s 95thPercentile' % METRICS[2]
             if len(metrics[metrics < 0]) > 0:
                 logging.info('%s has NEGATIVE values' % METRIC)
 
+        logging.info('End of assertations\n')
+
+
+    def record_tables(self, keyspace, scope):
+        logging.info('Connecting to %s:%d' % (self.host, self.client_port))
+        cluster = None
+        session = None
+
+        try:
+            cluster = Cluster(contact_points=[self.host], port=self.client_port,
+                              protocol_version=3, connect_timeout=50)
+            session = cluster.connect()
+
+        except NoHostAvailable as e:
+            logging.error('error_code = %d, NoHostAvailable' % e.error_code)
+
+        # flushing the keyspace
+        try:
+            cmd_drop_keyspace = "DROP KEYSPACE %s" % keyspace
+            logging.info('clq: %s' % cmd_drop_keyspace)
+            session.execute(cmd_drop_keyspace)
+
+        except ConfigurationException as e:
+            logging.error('error_code = %d, keyspace %s does not exist' %
+                          (e.error_code, keyspace))
+
+        except OperationTimedOut as e:
+            logging.error('error_code = %d, OperationTimedOut' % e.error_code)
+
+        table_name = '%s.%s' % (keyspace, self.jmx_metrics_table)
+
+        try:
+            cmd_create_keyspace = 'CREATE KEYSPACE %s WITH REPLICATION = {\
+    \'class\' : \'SimpleStrategy\', \'replication_factor\' : 1}; ' % keyspace
+            logging.info('cql: %s' % cmd_create_keyspace)
+            session.execute(cmd_create_keyspace)
+
+            # as the keyspace is defined by the scope, there is no need of composite key here
+            cmd_create_table = 'CREATE TABLE %s (sample int PRIMARY KEY,\
+     %s int, %s int, %s float);' % (table_name, METRICS[0], METRICS[1], METRICS[2])
+            logging.info(cmd_create_table)
+            session.execute(cmd_create_table)
+
+            # inserting values
+            num_rows = len(self.metrics[METRICS[0]])
+            for sample in range(num_rows):
+                cmd_insert = 'INSERT INTO %s (sample, %s, %s, %s) VALUES \
+    (%d, %d, %d, %f)' % (table_name, METRICS[0], METRICS[1], METRICS[2], (sample + 1),
+                         self.metrics[METRICS[0]][sample], self.metrics[METRICS[1]][sample],
+                         self.metrics[METRICS[2]][sample])
+                logging.info('cql: %s' % cmd_insert)
+
+        except OperationTimedOut as e:
+            logging.error('error_code = %d, OperationTimedOut' % e.error_code)
+
+
+        logging.info('Shutting down the connection\n')
+        session.shutdown()
+        cluster.shutdown()
+
 
     def plot_metrics(self, scope):
         logging.info('Plotting metrics\n')
@@ -324,8 +398,8 @@ type=ClientRequest,scope=Write,name=%s 95thPercentile' % METRICS[2]
 
 
 if __name__ == '__main__':
-    run_stress=True
-    check_metrics=True
+    run_stress = True
+    check_metrics = True
 
     config_log()
 
