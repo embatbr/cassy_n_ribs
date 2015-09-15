@@ -366,7 +366,7 @@ type=ClientRequest,scope=Write,name=%s 95thPercentile' % METRICS[2]
                           (e.error_code, keyspace_scope))
 
         except OperationTimedOut as e:
-            logging.error('error_code = %d, OperationTimedOut' % e.error_code)
+            logging.error('OperationTimedOut')
 
         table_name = '%s.%s' % (keyspace_scope, self.jmx_metrics_table)
 
@@ -387,7 +387,10 @@ type=ClientRequest,scope=Write,name=%s 95thPercentile' % METRICS[2]
                           (table_name, METRICS[0], METRICS[1], METRICS[2])
 
             sample = 0
-            num_samples = len(self.metrics[METRICS[0]])
+            lenghts = [len(self.metrics[METRICS[0]]), len(self.metrics[METRICS[1]]),
+                       len(self.metrics[METRICS[2]])]
+            num_samples = min(lenghts)
+
             for sample in range(num_samples):
                 primary_key = sample + 1
                 cmd_insert = '%s (%d, %d, %d, %f);' % (header_insert, primary_key,

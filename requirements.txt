@@ -1,8 +1,6 @@
 cassandra-driver==2.7.1
 futures==3.0.3
-JPype1==0.6.1
 numpy==1.9.2
-pexpect==3.3
 scipy==0.15.0
 six==1.9.0
 wheel==0.24.0
